@@ -54,6 +54,42 @@ repos:
         types_or: [python, pyi]
 
 
+
+    # Analyze the src code style and report code that doesn't adhere.
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint (python files in src/)
+        entry: pylint
+        language: system
+        types: [python]
+        files: ^src/
+        args:
+          [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=src/.pylintrc",
+          ]
+
+    # Analyze the tests code style and report code that doesn't adhere.
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint (python files in tests/ and benchmarks/)
+        entry: pylint
+        language: system
+        types: [python]
+        files: ^(tests|benchmarks)/
+        args:
+          [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=tests/.pylintrc",
+          ]
+
+
+
+
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the 
     # github workflow script, the coverage is run against the installed package
