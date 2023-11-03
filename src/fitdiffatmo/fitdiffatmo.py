@@ -1,5 +1,4 @@
 """ module fitdiffatmo
-pylint: disable=trailing-whitespace
 """
 #pylint: disable=trailing-whitespace
 
